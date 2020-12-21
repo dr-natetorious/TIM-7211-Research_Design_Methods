@@ -11,4 +11,3 @@ K, M., & S, G. (2015). Research using qualitative, quantitative or mixed methods
 ## Handbook of methodological approaches to community-based research (2016)
 
 Jason, L., & Glenwick, D. (2016). Handbook of methodological approaches to community-based research : qualitative, quantitative, and mixed methods (First edition.). Oxford University Press. [ProQuest](https://ebookcentral.proquest.com/lib/ncent-ebooks/detail.action?docID=4083288#?). [CH2](Handbook_ch2.pdf) | [CH13](Handbook_ch13.pdf) | [CH23](Handbook_ch23.pdf).
-
