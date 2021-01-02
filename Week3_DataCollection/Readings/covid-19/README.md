@@ -86,6 +86,13 @@ Based on these models a person is infectious for roughly 12 days (assuming `b=1`
 
 Abd El-Aziz, T. M., & Stockand, J. D. (2020). Recent progress and challenges in drug development against COVID-19 coronavirus (SARS-CoV-2) - an update on the status. Infection, Genetics and Evolution, 83. [DOI](https://doi-org.proxy1.ncu.edu/10.1016/j.meegid.2020.104327). [DrugDevCovid.pdf](DrugDevCovid.pdf)
 
+1. The authors begin the article with an analysis of how the virus likely spread from bats, to snakes, to humans, to other humans.
+2. Next, they review COVID information and how this is becoming a European and North American issue.
+3. From here break down the epidemiology into risk rates by age, gender, and nationality
+4. Then analysis on methods to prevent the spread take place (e.g., social distancing and decay rates of surface contamination)
+
+![progression.png](progression.png)
+
 ## The COVID-19 pandemic effects on the hospitality industry (2021)
 
 Shapoval, V., Hägglund, P., Pizam, A., Abraham, V., Carlbäck, M., Nygren, T., & Smith, R. M. (2021). The COVID-19 pandemic effects on the hospitality industry using social systems theory: A multi-country comparison. International Journal of Hospitality Management, 94. [DOI](https://doi-org.proxy1.ncu.edu/10.1016/j.ijhm.2020.102813). [HospitalityImpact.pdf](HospitalityImpact.pdf)
