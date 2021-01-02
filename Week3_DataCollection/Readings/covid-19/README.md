@@ -56,6 +56,32 @@ This study is the first to use progress percentage to plot epidemic curve and en
 
 Sohail, A., & Nutini, A. (2020). Forecasting the timeframe of 2019-nCoV and human cells interaction with reverse engineering. Progress in Biophysics and Molecular Biology, 155, 29–35. [DOI](https://doi-org.proxy1.ncu.edu/10.1016/j.pbiomolbio.2020.04.002). [ForecastingCovid.pdf](ForecastingCovid.pdf)
 
+> **Background**: The ongoing threat of the new coronavirus SARS-CoV2 pandemic is alarming and strategies for combating infection are highly desired. This RNA virus belongs to the b-coronavirus genus and is similar in some features to SARS-CoV. Currently, no vaccine or approved medical treatment is available. The complex dynamics of the rapid spread of this virus can be demonstrated with the aid of a computational framework. **Methods**: A mathematical model based on the principles of cell-virus interaction is developed in this manuscript. The amino acid sequence of S proein and its interaction with the ACE-2 protein is mimicked with the aid of Hill function. The mathematical model with delay is solved with the aid of numerical solvers and the parametric values are obtained with the help of MCMC algorithm. **Results**: A delay differential equation model is developed to demonstrate the dynamics of target cells, infected cells and the SARS-CoV2. The important parameters and coefficients are demonstrated with the aid of numerical computations. The resulting thresholds and forecasting may prove to be useful tools for future experimental studies and control strategies.
+
+### How did they approach the problem
+
+The study begins with an analysis of the virus structure and its relationship to previous outbreaks of SARS (Severe Acute Respiratory Syndrome) epidemic of 2002 and the MERS (Middle East
+Respiratory Syndrome) of 2012.  Models from those crisis form the foundation of this predictive construct.
+
+This begins with determining the `Hill function`, which models cell interactions and delays of infection.  Next, the transition probabilities require two important values:
+
+1. Infectious Dose: amount of SARS-CoV2 virus, the host is exposed
+to.
+2. Incubation Period: time taken by the virus to hijack the target
+cells.
+
+These values feed into a Markov Chain that predicts the infection rate and necessary time.
+
+![schematic.png](schematic.png)
+
+### What are their results
+
+After using different `Hill` constants they could predict the incubation durations of the virus.  This assumes that it follows similar behaviors to SARS and MERS -- as their is no historic COVID data.
+
+Based on these models a person is infectious for roughly 12 days (assuming `b=1`).  This is particularly useful for devising medical processes and response strategies.
+
+![incubation.png](incubation.png)
+
 ## Recent progress and challenges in drug development against COVID-19 (2020)
 
 Abd El-Aziz, T. M., & Stockand, J. D. (2020). Recent progress and challenges in drug development against COVID-19 coronavirus (SARS-CoV-2) - an update on the status. Infection, Genetics and Evolution, 83. [DOI](https://doi-org.proxy1.ncu.edu/10.1016/j.meegid.2020.104327). [DrugDevCovid.pdf](DrugDevCovid.pdf)
