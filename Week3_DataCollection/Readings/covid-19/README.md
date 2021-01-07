@@ -60,15 +60,12 @@ Sohail, A., & Nutini, A. (2020). Forecasting the timeframe of 2019-nCoV and huma
 
 ### How did they approach the problem
 
-The study begins with an analysis of the virus structure and its relationship to previous outbreaks of SARS (Severe Acute Respiratory Syndrome) epidemic of 2002 and the MERS (Middle East
-Respiratory Syndrome) of 2012.  Models from those crisis form the foundation of this predictive construct.
+The study begins with an analysis of the virus structure and its relationship to previous outbreaks of SARS (Severe Acute Respiratory Syndrome) epidemic of 2002 and the MERS (Middle East Respiratory Syndrome) of 2012.  Models from those crisis form the foundation of this predictive construct.
 
 This begins with determining the `Hill function`, which models cell interactions and delays of infection.  Next, the transition probabilities require two important values:
 
-1. Infectious Dose: amount of SARS-CoV2 virus, the host is exposed
-to.
-2. Incubation Period: time taken by the virus to hijack the target
-cells.
+1. Infectious Dose: amount of SARS-CoV2 virus, the host is exposed to.
+2. Incubation Period: time taken by the virus to hijack the target cells.
 
 These values feed into a Markov Chain that predicts the infection rate and necessary time.
 
