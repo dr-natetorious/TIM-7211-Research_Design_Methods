@@ -4,6 +4,10 @@ RUN apt-get -y update && apt-get -y install npm zip git \
   && npm install -g aws-cdk \
   && /usr/local/bin/python -m pip install --upgrade pip
 
+RUN /usr/local/bin/python -m pip install --upgrade pip
+RUN apt-get -y install curl
+RUN curl -sSL https://get.docker.com/ | sh
+
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 

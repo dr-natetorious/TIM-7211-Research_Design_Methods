@@ -1,4 +1,2 @@
 praw
-boto3
 psaw
-json

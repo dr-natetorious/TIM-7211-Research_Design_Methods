@@ -9,6 +9,6 @@
 @PUSHD %base_path%
 
 @CALL docker build -t wsbscrape-deploy images/cdk-deploy
-@CALL docker run -it -v %userprofile%\.aws:/root/.aws -v %cd%:/files -w /files wsbscrape-deploy ship-it
+@CALL docker run -it -v %userprofile%\.aws:/root/.aws -v %cd%:/files -v /var/run/docker.sock:/var/run/docker.sock -w /files wsbscrape-deploy ship-it
 
 @POPD
