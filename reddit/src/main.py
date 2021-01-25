@@ -71,10 +71,26 @@ for year in range(2021,2013,-1):
           'id': default_text(lambda: submission.author.fullname, 'unknown'),
           'name':default_text(lambda:submission.author.name, 'unknown'),
         },
+        'subreddit':{
+          'name': submission.subreddit_name_prefixed,
+          'subscribers':submission.subreddit_subscribers,
+        },
+        'mod':{
+          'note': submission.mod_note,
+          'reason_by':submission.mod_reason_by,
+          'reason_title':submission.mod_reason_title,
+        },
         'selftext':submission.selftext,
         'distinguished': submission.distinguished,
+        'total_awards_received': submission.total_awards_received,
         'link_flair_text': submission.link_flair_text,
         'score': submission.score,
+        'stats':{
+          'up': submission.ups,
+          'down': submission.downs,
+          'upvote_ratio': submission.upvote_ratio,
+          'view_count': submission.view_count,
+        },
         'title':submission.title,
         'url': submission.url,
         'images': images(submission)

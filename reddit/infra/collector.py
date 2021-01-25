@@ -18,7 +18,7 @@ class CollectorLayer(core.Construct):
     super().__init__(scope, id, **kwargs)
 
     self.queue = sqs.Queue(self,'PendingItems',
-      content_based_deduplication=True,
+      fifo=False,
       retention_period= core.Duration.days(14),
       visibility_timeout=core.Duration.minutes(1))
 
