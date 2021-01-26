@@ -2,6 +2,8 @@ import datetime as dt
 import typing
 from json import dumps
 from praw import Reddit
+from praw.models import Comment
+from praw.models.comment_forest import CommentForest, MoreComments
 from psaw import PushshiftAPI
 
 class Scraper:
@@ -72,15 +74,15 @@ class Scraper:
             'name':Scraper.default_text(lambda:submission.author.name, 'unknown'),
           },
           'subreddit':{
+            'id': submission.subreddit_id,
             'name': submission.subreddit_name_prefixed,
-            'subscribers':submission.subreddit_subscribers,
           },
           'mod':{
             'note': submission.mod_note,
             'reason_by':submission.mod_reason_by,
             'reason_title':submission.mod_reason_title,
           },
-          'selftext':submission.selftext,
+          'body':submission.selftext,
           'distinguished': submission.distinguished,
           'total_awards_received': submission.total_awards_received,
           'link_flair_text': submission.link_flair_text,
@@ -96,14 +98,60 @@ class Scraper:
           'images': Scraper.images(submission)
         }
 
-    def fetch_comments(self, start_time, end_time) -> typing.List[dict]:
+    def fetch_comments(self, submission_id:str) -> typing.List[dict]:
       """
       start_time = int(dt.datetime(year, 1, 1).timestamp())
       end_time = int(dt.datetime(year, 1, 30).timestamp())    
       submissions = scraper.fetch_period(start_time, end_time)
       """
-      for submission in self.psapi.search_comments().search_submissions(
-        after=start_time, 
-        before=end_time, 
-        subreddit='wallstreetbets',
-        limit=999):
+      submission = self.reddit.submission(id=submission_id)
+      for c in submission.comments:
+        print('Top level comment {}'.format(c.id))
+        yield self._process_comment(c, submission_id)
+
+    def _process_comment(self, comment, submission_id) -> typing.List[dict]:
+      """
+      Processes the comment tree
+      """
+      items =[]
+      if isinstance(comment, CommentForest) or isinstance(comment, Comment):
+        for reply in comment.replies:
+          items.extend(self._process_comment(reply, submission_id))
+      elif isinstance(comment, MoreComments):
+        for reply in comment.comments(update=True):
+          items.extend(self._process_comment(reply, submission_id))
+        return items
+
+      this_record= {
+        'id': comment.id,
+        'created_utc': comment.created_utc,
+        'body': comment.body,
+        'structure':{
+          'parent': comment.parent_id,
+          'submission_id':submission_id,
+          'depth': comment.depth,
+        },
+        'author':{
+            'id': Scraper.default_text(lambda: comment.author.fullname, 'unknown'),
+            'name':Scraper.default_text(lambda:comment.author.name, 'unknown'),
+          },
+          'subreddit':{
+            'id': comment.subreddit_id,
+            'name': comment.subreddit_name_prefixed,
+          },
+          'mod':{
+            'note': comment.mod_note,
+            'reason_by':comment.mod_reason_by,
+            'reason_title':comment.mod_reason_title,
+          },
+          'stats':{
+            'score': comment.score,
+            'total_awards_received': comment.total_awards_received,
+            'ups': comment.ups,
+            'downs':comment.downs,
+            'distinguished': comment.distinguished
+          }
+      }
+
+      items.append(this_record)
+      return items
