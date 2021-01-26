@@ -17,11 +17,6 @@ class CollectorLayer(core.Construct):
   def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
     super().__init__(scope, id, **kwargs)
 
-    self.queue = sqs.Queue(self,'PendingItems',
-      fifo=False,
-      retention_period= core.Duration.days(14),
-      visibility_timeout=core.Duration.minutes(1))
-
     self.repo = assets.DockerImageAsset(self,'Repo',
       directory=src_root_dir,
       repository_name=repository_name)
@@ -34,7 +29,3 @@ class CollectorLayer(core.Construct):
       timeout= core.Duration.minutes(1),
       tracing= lambda_.Tracing.ACTIVE,
     )
-
-    self.function.add_event_source(events.SqsEventSource(
-      queue=self.queue,
-      batch_size=1))
