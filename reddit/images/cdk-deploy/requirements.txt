@@ -4,3 +4,5 @@ aws-cdk.aws_sqs
 aws-cdk.aws_lambda
 aws-cdk.aws_lambda_event_sources
 aws-cdk.aws_elasticsearch
+aws_cdk.aws_stepfunctions
+aws_cdk.aws-stepfunctions-tasks

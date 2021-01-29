@@ -7,6 +7,6 @@ src_root_dir = os.path.join(os.path.dirname(__file__))
 default_env= Environment(region="us-east-2")
 
 app = App()
-infra_stack = Stack(app,'WSBScraper', env=default_env)
+infra_stack = Stack(app,'RedditSync', env=default_env)
 create_layers(infra_stack)
 app.synth()

@@ -5,10 +5,32 @@ from aws_cdk import (
   aws_lambda as lambda_,
   aws_ecr_assets as assets,
   aws_lambda_event_sources as events,
+  aws_stepfunctions as sf,
+  aws_stepfunctions_tasks as t,
+  aws_logs as logs,
 )
 
 src_root_dir = os.path.join(os.path.dirname(__file__),"../src")
 repository_name = 'wsbscraper'
+
+class SyncStateMachineConstruct(core.Construct):
+  """
+  Configure the data collections layer
+  """
+  def __init__(self, scope: core.Construct, id: str, definition:sf.Chain, **kwargs) -> None:
+    super().__init__(scope, id, **kwargs)
+    
+    self.states = sf.StateMachine(self,'StateMachine',
+      definition= definition,
+      logs= sf.LogOptions(
+        destination= logs.LogGroup(self,'LogGroup',
+        removal_policy=core.RemovalPolicy.DESTROY,
+        retention=logs.RetentionDays.ONE_MONTH),
+        include_execution_data=True,
+        level= sf.LogLevel.ALL),
+      state_machine_type= sf.StateMachineType.STANDARD,
+      timeout=core.Duration.days(1),
+      tracing_enabled=True)
 
 class CollectorLayer(core.Construct):
   """
@@ -21,7 +43,7 @@ class CollectorLayer(core.Construct):
       directory=src_root_dir,
       repository_name=repository_name)
 
-    self.function = lambda_.DockerImageFunction(self,'ContainerFunction',
+    self.sync_lambda = lambda_.DockerImageFunction(self,'ContainerFunction',
       code = lambda_.DockerImageCode.from_ecr(
         repository=self.repo.repository,
         tag=self.repo.image_uri.split(':')[-1]), # lambda_.DockerImageCode.from_image_asset(directory=os.path.join(src_root_dir,directory)),
@@ -29,3 +51,17 @@ class CollectorLayer(core.Construct):
       timeout= core.Duration.minutes(1),
       tracing= lambda_.Tracing.ACTIVE,
     )
+
+    self.create_step_function()
+
+  def create_step_function(self) -> sf.StateMachine:
+    run_sync_task = t.LambdaInvoke(
+      self,'RunSync',
+      lambda_function= self.sync_lambda)
+
+    is_complete = sf.Choice(self,'Is-Complete'
+      ).when(sf.Condition.string_equals('$.done', 'TRUE'), run_sync_task
+      ).otherwise(sf.Pass(self,'Finished'))
+
+    definition = run_sync_task.next(is_complete)
+    SyncStateMachineConstruct(self,'Sync', definition=definition)
