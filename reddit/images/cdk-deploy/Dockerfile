@@ -1,6 +1,6 @@
 FROM python:3.8
 
-RUN apt-get -y update && apt-get -y install npm zip git \
+RUN apt-get -y update && apt-get -y install npm zip \
   && npm install -g aws-cdk \
   && /usr/local/bin/python -m pip install --upgrade pip
 
