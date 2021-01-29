@@ -46,6 +46,9 @@ class IncomingRequest:
     }
 
 def handle_event(event, context):
+  """
+  The main entry point for Lambda Function.
+  """
   incoming_request = IncomingRequest(event)
   print(str(incoming_request))
 
@@ -55,5 +58,5 @@ def handle_event(event, context):
     start_time= incoming_request.start_time.timestamp(),
     end_time=incoming_request.end_time.timestamp())
 
-  print("Found {} submissions".format(len(submissions)))
+  print("Found {} submissions".format(len(list(submissions))))
   return incoming_request.increment()

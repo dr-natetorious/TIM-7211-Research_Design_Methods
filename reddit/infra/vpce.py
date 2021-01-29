@@ -5,7 +5,7 @@ from aws_cdk import (
 )
 
 
-class VpcEndpointsForIsolatedSubnets(core.Construct):
+class VpcEndpointsForAWSServices(core.Construct):
     """
     Configure the Vendor Application
     """

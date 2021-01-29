@@ -20,14 +20,17 @@ RUN mkdir -p ${FUNCTION_DIR}
 # Copy function code
 COPY . ${FUNCTION_DIR}
 
+# Upgrade PIP
+RUN /usr/local/bin/python -m pip install --upgrade pip
+
 # Install the runtime interface client
 RUN pip install \
   --target ${FUNCTION_DIR} \
-  awslambdaric
+  awslambdaric --upgrade
 
 RUN pip install \
   --target ${FUNCTION_DIR} \
-  -r ${FUNCTION_DIR}/requirements.txt
+  -r ${FUNCTION_DIR}/requirements.txt --upgrade
 
 # Multi-stage build: grab a fresh copy of the base image
 FROM public.ecr.aws/lambda/python:3.8

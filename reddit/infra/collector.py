@@ -1,6 +1,7 @@
 import os.path
 from aws_cdk import (
   core,
+  aws_ec2 as ec2,
   aws_sqs as sqs,
   aws_lambda as lambda_,
   aws_ecr_assets as assets,
@@ -12,7 +13,8 @@ from aws_cdk import (
 )
 
 src_root_dir = os.path.join(os.path.dirname(__file__),"../src")
-repository_name = 'wsbscraper'
+repository_name = 'reddit-sync'
+layer_subnets=ec2.SubnetSelection(subnet_group_name='Collector')
 
 class SyncStateMachineConstruct(core.Construct):
   """
@@ -37,8 +39,10 @@ class CollectorLayer(core.Construct):
   """
   Configure the data collections layer
   """
-  def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+  def __init__(self, scope: core.Construct, id: str, vpc:ec2.Vpc, **kwargs) -> None:
     super().__init__(scope, id, **kwargs)
+    
+    self.vpc = vpc
 
     self.create_lambda_functions()
     self.create_kinesis()
@@ -63,7 +67,10 @@ class CollectorLayer(core.Construct):
         tag=self.repo.image_uri.split(':')[-1]), # lambda_.DockerImageCode.from_image_asset(directory=os.path.join(src_root_dir,directory)),
       description='Python container lambda function for '+repository_name,
       timeout= core.Duration.minutes(1),
-      tracing= lambda_.Tracing.ACTIVE)
+      memory_size=512,
+      tracing= lambda_.Tracing.ACTIVE,
+      vpc= self.vpc,
+      vpc_subnets=layer_subnets)
 
   def create_kinesis(self):
     self.__submission_stream = k.Stream(self,'SubmissionOutput',
@@ -84,7 +91,7 @@ class CollectorLayer(core.Construct):
       lambda_function= self.sync_lambda)
 
     is_complete = sf.Choice(self,'Is-Complete'
-      ).when(sf.Condition.string_equals('$.done', 'TRUE'), run_sync_task
+      ).when(sf.Condition.string_equals('$.is_done', 'False'), run_sync_task
       ).otherwise(sf.Pass(self,'Finished'))
 
     definition = run_sync_task.next(is_complete)
