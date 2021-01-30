@@ -31,7 +31,7 @@ class NetworkingLayer(core.Construct):
                   name='Collector', subnet_type=ec2.SubnetType.PRIVATE, cidr_mask=24),
             ])
 
-        #VpcEndpointsForIsolatedSubnets(self,'Endpoints',vpc=self.vpc)
+        VpcEndpointsForAWSServices(self,'Endpoints',vpc=self.vpc)
 
         self.security_group = ec2.SecurityGroup(
             self, 'SecurityGroup',

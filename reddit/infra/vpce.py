@@ -34,7 +34,12 @@ class VpcEndpointsForAWSServices(core.Construct):
                     name=svc))
 
         self.interfaces = {}
-        for svc in ['ssm', 'ec2messages', 'ec2', 'ssmmessages', 'kms', 'elasticloadbalancing', 'elasticfilesystem', 'lambda']:
+        for svc in ['ssm', 'ec2messages', 'ec2',
+                    'ssmmessages', 'kms', 'elasticloadbalancing',
+                    'elasticfilesystem', 'lambda', 'states',
+                    'events', 'execute-api', 'kinesis-streams',
+                    'kinesis-firehose', 'logs', 'sns', 'sqs',
+                    'secretsmanager', 'config', 'ecr.api', 'ecr.dkr']:
             self.interfaces[svc] = ec2.InterfaceVpcEndpoint(
                 self, svc,
                 vpc=vpc,
