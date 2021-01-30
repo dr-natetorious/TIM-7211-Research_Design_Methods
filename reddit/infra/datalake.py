@@ -1,3 +1,4 @@
+from infra.networking import NetworkingLayer
 from aws_cdk import (
     core,
     aws_ec2 as ec2,
@@ -12,8 +13,7 @@ class DataLakeLayer(core.Construct):
     """
     Configure the datalake layer
     """
-
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+    def __init__(self, scope: core.Construct, id: str, networking:NetworkingLayer, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
         self.encryption_key = kms.Key(
@@ -38,17 +38,17 @@ class DataLakeLayer(core.Construct):
                 enabled=True,
                 kms_key=self.encryption_key
             ),
-            # vpc_options=es.VpcOptions(
-            #     subnets=self.vpc.public_subnets,
-            #     security_groups=[self.security_group]
-            # ),
+            vpc_options=es.VpcOptions(
+                subnets=networking.vpc.public_subnets,
+                security_groups=[networking.security_group]
+            ),
             logging=es.LoggingOptions(
                 app_log_enabled=True,
                 app_log_group=logs.LogGroup(
                     self, 'SearchAppLogGroup',
                     removal_policy=core.RemovalPolicy.DESTROY,
                     retention=logs.RetentionDays.ONE_MONTH),
-                audit_log_enabled=True,
+                audit_log_enabled=False,
                 audit_log_group=logs.LogGroup(
                     self, 'SearchAuditLogs',
                     removal_policy=core.RemovalPolicy.DESTROY,
@@ -59,11 +59,24 @@ class DataLakeLayer(core.Construct):
                     removal_policy=core.RemovalPolicy.DESTROY,
                     retention=logs.RetentionDays.ONE_MONTH),
             ),
-            fine_grained_access_control=es.AdvancedSecurityOptions(
-                master_user_name='reddit',
-                master_user_password=core.SecretValue.plain_text(
-                    secret='D3generate!')
-            ))
+            # access_policies=[
+            #     iam.PolicyStatement(
+            #         effect=iam.Effect.ALLOW,
+            #         actions=['es:*'],
+            #         conditions={
+            #             'IpAddress':{
+            #                 'aws:SourceIp':{
+            #                     '74.102.88.0/24'
+            #                 }
+            #             }
+            #         })
+            # ]
+            # fine_grained_access_control=es.AdvancedSecurityOptions(
+            #     master_user_name='reddit',
+            #     master_user_password=core.SecretValue.plain_text(
+            #         secret='D3generate!')
+            # )
+            )
 
         # Configre the LinkedServiceRole to update the VPC
         serviceLinkedRole = core.CfnResource(
