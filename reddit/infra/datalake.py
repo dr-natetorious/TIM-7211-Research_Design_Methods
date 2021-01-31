@@ -63,6 +63,7 @@ class DataLakeLayer(core.Construct):
             #     iam.PolicyStatement(
             #         effect=iam.Effect.ALLOW,
             #         actions=['es:*'],
+            #         resources=['*'],
             #         conditions={
             #             'IpAddress':{
             #                 'aws:SourceIp':{
@@ -71,12 +72,7 @@ class DataLakeLayer(core.Construct):
             #             }
             #         })
             # ]
-            # fine_grained_access_control=es.AdvancedSecurityOptions(
-            #     master_user_name='reddit',
-            #     master_user_password=core.SecretValue.plain_text(
-            #         secret='D3generate!')
-            # )
-            )
+        )
 
         # Configre the LinkedServiceRole to update the VPC
         serviceLinkedRole = core.CfnResource(
