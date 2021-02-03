@@ -8,7 +8,6 @@ from aws_cdk import (
     aws_iam as iam,
 )
 
-
 class DataLakeLayer(core.Construct):
     """
     Configure the datalake layer
@@ -21,8 +20,18 @@ class DataLakeLayer(core.Construct):
             removal_policy=core.RemovalPolicy.DESTROY,
             enable_key_rotation=True)
 
+        policy = iam.PolicyStatement(
+            sid='Allow-by-IPAddress',
+            actions=['es:*'],
+            principals=[iam.AnyPrincipal()],
+            resources=['*'])
+
+        # policy.add_condition('IpAddress',{
+        #     'aws:SourceIp':'74.102.88.0/24'
+        # })
+            
         self.search = es.Domain(
-            self, 'Search',
+            self, 'SearchCluster',
             version=es.ElasticsearchVersion.V7_9,
             enforce_https=True,
             node_to_node_encryption=True,
@@ -59,20 +68,9 @@ class DataLakeLayer(core.Construct):
                     removal_policy=core.RemovalPolicy.DESTROY,
                     retention=logs.RetentionDays.ONE_MONTH),
             ),
-            # access_policies=[
-            #     iam.PolicyStatement(
-            #         effect=iam.Effect.ALLOW,
-            #         actions=['es:*'],
-            #         resources=['*'],
-            #         conditions={
-            #             'IpAddress':{
-            #                 'aws:SourceIp':{
-            #                     '74.102.88.0/24'
-            #                 }
-            #             }
-            #         })
-            # ]
-        )
+            access_policies=[
+                policy              
+            ])
 
         # Configre the LinkedServiceRole to update the VPC
         serviceLinkedRole = core.CfnResource(

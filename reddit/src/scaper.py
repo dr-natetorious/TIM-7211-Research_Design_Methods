@@ -56,7 +56,7 @@ class Scraper:
         after=start_time, 
         before=end_time, 
         subreddit='wallstreetbets',
-        limit=10):
+        limit=1000):
 
         if submission.selftext == '[removed]':
           continue

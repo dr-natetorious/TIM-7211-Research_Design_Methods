@@ -15,6 +15,7 @@ from aws_cdk import (
 src_root_dir = os.path.join(os.path.dirname(__file__),"../src")
 repository_name = 'reddit-sync'
 layer_subnets=ec2.SubnetSelection(subnet_group_name='Collector')
+output_stream_retention_period = core.Duration.days(30)
 
 class SyncStateMachineConstruct(core.Construct):
   """
@@ -73,14 +74,14 @@ class CollectorLayer(core.Construct):
       vpc_subnets=layer_subnets)
 
   def create_kinesis(self):
-    self.__submission_stream = k.Stream(self,'SubmissionOutput',
-      retention_period= core.Duration.days(1),
+    self.__submission_stream = k.Stream(self,'Submissions',
+      retention_period= output_stream_retention_period,
       shard_count=1)
     self.sync_lambda.add_environment('SUBMISSION_STREAM',self.submission_stream.stream_name)
     self.submission_stream.grant_write(self.sync_lambda.role)
 
-    self.__comment_stream = k.Stream(self,'CommentOutput',
-      retention_period= core.Duration.days(1),
+    self.__comment_stream = k.Stream(self,'Comments',
+      retention_period= output_stream_retention_period,
       shard_count=1)
     self.sync_lambda.add_environment('COMMENT_STREAM', self.comment_stream.stream_name)
     self.comment_stream.grant_write(self.sync_lambda.role)
@@ -90,9 +91,9 @@ class CollectorLayer(core.Construct):
       self,'RunSync',
       lambda_function= self.sync_lambda)
 
-    is_complete = sf.Choice(self,'Is-Complete'
-      ).when(sf.Condition.string_equals('$.is_done', 'False'), run_sync_task
-      ).otherwise(sf.Pass(self,'Finished'))
+    is_complete = sf.Choice(self,'Is-Complete')
+    is_complete = is_complete.when(sf.Condition.string_equals('$.is_done', 'False'),run_sync_task)
+    is_complete = is_complete.otherwise(sf.Pass(self,'Finished'))
 
     definition = run_sync_task.next(is_complete)
     SyncStateMachineConstruct(self,'Sync', definition=definition)
