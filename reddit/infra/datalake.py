@@ -26,6 +26,7 @@ class DataLakeLayer(core.Construct):
             principals=[iam.AnyPrincipal()],
             resources=['*'])
 
+        # Not supported with ES in Vpc mode.
         # policy.add_condition('IpAddress',{
         #     'aws:SourceIp':'74.102.88.0/24'
         # })

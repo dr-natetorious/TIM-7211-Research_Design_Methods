@@ -28,10 +28,12 @@ class NetworkingLayer(core.Construct):
                 ec2.SubnetConfiguration(
                   name='Public', subnet_type=ec2.SubnetType.PUBLIC, cidr_mask=24),
                 ec2.SubnetConfiguration(
-                  name='Collector', subnet_type=ec2.SubnetType.PRIVATE, cidr_mask=24),
+                    name='Collector', subnet_type=ec2.SubnetType.PRIVATE, cidr_mask=24),
+                ec2.SubnetConfiguration(
+                    name='DevNet', subnet_type=ec2.SubnetType.PRIVATE, cidr_mask=28),
             ])
 
-        VpcEndpointsForAWSServices(self,'Endpoints',vpc=self.vpc)
+        VpcEndpointsForAWSServices(self, 'Endpoints', vpc=self.vpc)
 
         self.security_group = ec2.SecurityGroup(
             self, 'SecurityGroup',
@@ -47,4 +49,4 @@ class NetworkingLayer(core.Construct):
         self.security_group.add_ingress_rule(
             peer=ec2.Peer.ipv4(cidr_ip='74.102.88.0/24'),
             connection=ec2.Port.all_traffic(),
-           description='Jersey City Verizon')
+            description='Jersey City Verizon')

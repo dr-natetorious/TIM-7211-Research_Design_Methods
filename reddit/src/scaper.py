@@ -46,6 +46,9 @@ class Scraper:
       except:
         return default
 
+    def fetch(self) -> typing.List[dict]:
+      self.reddit.subreddit(display_name='asdf')
+
     def fetch_submissions(self, start_time, end_time) -> typing.List[dict]:
       """
       start_time = int(dt.datetime(year, 1, 1).timestamp())
@@ -56,7 +59,7 @@ class Scraper:
         after=start_time, 
         before=end_time, 
         subreddit='wallstreetbets',
-        limit=1000):
+        limit=100):
 
         if submission.selftext == '[removed]':
           continue

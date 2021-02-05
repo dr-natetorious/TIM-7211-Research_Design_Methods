@@ -67,7 +67,7 @@ class CollectorLayer(core.Construct):
         repository=self.repo.repository,
         tag=self.repo.image_uri.split(':')[-1]), # lambda_.DockerImageCode.from_image_asset(directory=os.path.join(src_root_dir,directory)),
       description='Python container lambda function for '+repository_name,
-      timeout= core.Duration.minutes(1),
+      timeout= core.Duration.minutes(15),
       memory_size=512,
       tracing= lambda_.Tracing.ACTIVE,
       vpc= self.vpc,

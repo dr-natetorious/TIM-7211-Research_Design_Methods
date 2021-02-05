@@ -10,33 +10,35 @@ comment_writer = StreamWriter(environ.get('COMMENT_STREAM'))
 
 def handle_event(event,context):
   scraper = Scraper(subreddit='wallstreetbets')
-  year = 2020
-  print('=================')
-  print(year)
-  print('=================')
+  # year = 2020
+  # print('=================')
+  # print(year)
+  # print('=================')
 
   incoming_request = IncomingRequest(event)
 
-  start_time = int(datetime(year, 1, 1).timestamp())
-  end_time = int(datetime(year, 1, 30).timestamp())
+  # start_time = int(datetime(year, 1, 1).timestamp())
+  # end_time = int(datetime(year, 1, 30).timestamp())
 
   print(dumps({
     'incoming_request':{
       'start': incoming_request.start_time.timestamp(),
       'end': incoming_request.end_time.timestamp()
     },
-    'static':{
-      'start': start_time,
-      'end': end_time
-    }
+    # 'static':{
+    #   'start': start_time,
+    #   'end': end_time
+    # }
   }, indent=True))
 
   submissions = scraper.fetch_submissions(
-    start_time=start_time, 
-    end_time=end_time)
+    start_time=incoming_request.start_time.timestamp(),
+    end_time=incoming_request.end_time.timestamp())
+  
+  for submission in submissions:
+    submission_writer.put_records([submission])
     
-  submission_writer.put_records([submissions])
-  return dumps(incoming_request.increment(),indent=True)
+  return dumps(incoming_request.decrement(),indent=True)
 
   # for submission in scraper.fetch_submissions(
   #   start_time=start_time, 

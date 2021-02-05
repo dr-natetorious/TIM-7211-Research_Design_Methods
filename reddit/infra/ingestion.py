@@ -42,6 +42,10 @@ class ESDelivery(core.Construct):
         super().__init__(scope, id, **kwargs)       
 
         subnets = networking.vpc.select_subnets(subnet_group_name='Collector').subnet_ids
+        self.log_stream = logs.LogStream(self,'LogStream',
+          log_group=log_group,
+          log_stream_name='ESD-'+index_name,
+          removal_policy= core.RemovalPolicy.DESTROY)        
 
         # Load data into Elastic Search
         self.elastic_delivery = f.CfnDeliveryStream(
@@ -68,7 +72,7 @@ class ESDelivery(core.Construct):
                     cloud_watch_logging_options=f.CfnDeliveryStream.CloudWatchLoggingOptionsProperty(
                         enabled=True,
                         log_group_name=log_group.log_group_name,
-                        log_stream_name='ESD-'+index_name),
+                        log_stream_name=self.log_stream.log_stream_name),
                     error_output_prefix='errors/',
                     prefix=index_name + '/incoming/')))
 

@@ -1,6 +1,7 @@
 from json import dumps
 from datetime import datetime, timedelta
 
+date_format='%Y-%m-%d %H:%M:%S'
 class IncomingRequest:
   """
   Represents the incomding event structure
@@ -14,11 +15,15 @@ class IncomingRequest:
 
   @property
   def start_time(self) -> datetime:
-    return datetime.strptime(self.event['start_time'],'%Y-%m-%d')
+    return datetime.strptime(self.event['start_time'],date_format)
 
   @property
   def end_time(self) -> datetime:
-    return datetime.strptime(self.event['end_time'],'%Y-%m-%d')
+    return datetime.strptime(self.event['end_time'], date_format)
+
+  @property
+  def interval(self) -> timedelta:
+    return timedelta(hours=1)
 
   @property
   def is_done(self) -> bool:
@@ -42,4 +47,13 @@ class IncomingRequest:
       'start_time': next_start,
       'end_time': self.end_time,
       'is_done': next_start > self.end_time
+    }
+
+  def decrement(self)->dict:
+    next_start = self.start_time - self.interval
+    return {
+      'subreddit': self.subreddit,
+      'start_time': next_start.strftime(date_format),
+      'end_time': self.end_time.strftime(date_format),
+      'is_done': self.start_time.year < 2012
     }

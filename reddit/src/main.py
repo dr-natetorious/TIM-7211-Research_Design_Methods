@@ -4,6 +4,10 @@ from scaper import Scraper
 from writer import StreamWriter
 
 scraper = Scraper(subreddit='wallstreetbets')
+
+scraper.subreddit.search
+
+
 submission_writer = StreamWriter(stream_name='RedditSync-CollectorSubmissionOutput436F4C20-RtvwYoK7f4Kp')
 
 # top_level_comments = scraper.fetch_comments(submission_id='l4xxjm')
