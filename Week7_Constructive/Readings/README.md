@@ -2,9 +2,9 @@
 
 ## Design science in information systems research (2004)
 
-Hevner, A. R., March, S. T., Park, J., & Ram, S. (2004). Design science in information systems research. MIS Quarterly, 28(1), 75-105.
+Hevner, A. R., March, S. T., Park, J., & Ram, S. (2004). Design science in information systems research. MIS Quarterly, 28(1), 75-105.doi:10.2307/25148625. [DesignScience.pdf](DesignScience.pdf).
 
-The paper describes the design-science paradigm through the use of new and innovative artifacts that extend the boundaries of human and organizational capabilities. doi:10.2307/25148625.  [DesignScience.pdf](DesignScience.pdf).
+The paper describes the design-science paradigm through the use of new and innovative artifacts that extend the boundaries of human and organizational capabilities.
 
 > That is, design-science research requires the creation of an innovative `purposeful artifact` (Guideline 1) for a `specified problem domain` (Guideline 2). Because the artifact is purposeful, it must `yield utility` for the specified problem. Hence, thorough evaluation of the artifact is crucial (Guideline 3). Novelty is similarly crucial since the artifact `must be innovative`, solving a heretofore unsolved problem or solving a known problem in a more effective or efficient manner (Guideline 4). In this way, design-science research is differentiated from the practice of design. The artifact itself must be `rigorously defined, formally represented, coherent, and internally consistent` (Guideline 5). The process by which it is created, and often the artifact itself, `incorporates or enables a search process` whereby a problem space is constructed and a mechanism posed or enacted to find an effective solution (Guideline 6). Finally, the results of the design-science research `must be communicated effectively` (Guideline 7) both to a technical audience (researchers who will extend them and practitioners who will implement them) and to a managerial audience (researchers who will study them in context and practitioners who will decide if they should be implemented within their organizations).
 

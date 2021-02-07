@@ -22,7 +22,7 @@ Recently multiple political and natural events have disrupted communication.  Th
 
 ## Measuring Cybersecurity Wellness Index of Critical Organisations (2018)
 
-H. Jazri, O. Zakaria and E. Chikohora, "Measuring Cybersecurity Wellness Index of Critical Organisations," 2018 IST-Africa Week Conference (IST-Africa), Gaborone, 2018, pp. Page 1 of 8-Page 8 of 8. [MeasuringCybersecurity.pdf](MeasuringCybersecurity.pdf).
+H. Jazri, O. Zakaria and E. Chikohora, "Measuring Cybersecurity Wellness Index of Critical Organisations," 2018 IST-Africa Week Conference (IST-Africa), Gaborone, 2018, pp. Page 1 of 8-Page 8 of 8. [EBSCO](https://search-ebscohost-com.proxy1.ncu.edu/login.aspx?direct=true&db=edseee&AN=edseee.8417299&site=eds-live). [MeasuringCybersecurity.pdf](MeasuringCybersecurity.pdf).
 
 The authors introduce a concept of _cybersecurity wellness for Critical Organizations_ and provide a measurement index.  This artifact allows organizations to compare and evaluate against one another more easily.  They can also follow a bottom-up approach to identify map problems and potential solutions.
 
