@@ -40,9 +40,47 @@ Those functions are: Identify, Protect, Detect, Response, Recover.  Each is grad
 
 A. Luna, M. Chong and D. Jurburg, "Learning Strategies to Optimize the Assimilation of ITC2 Competencies for Business Engineering Programs," 2018 IEEE International Conference on Teaching, Assessment, and Learning for Engineering (TALE), Wollongong, NSW, 2018, pp. 616-623, doi: 10.1109/TALE.2018.8615444. [LearningStrategies.pdf](LearningStrategies.pdf).
 
+Modern instructional training needs to incorporate `Revolution 4.0`, which is a fancy term for IoT systems.  These technologies can promote more engagement by `gamification` of learning.
+
+*What artifacts did they produce?*
+
+The researchers modified an undergraduate course of Business Engineering at a private university.  They examined the scores of students that took the course from 2013-6 and 2016-7 semesters.  Each iteration is roughly 15-weeks in length and encompasses roughly 300 total students.
+
+![gamification.png](gamification.png)
+
+*What did those results show?*
+
+The students spent more time playing the games, which caused more engagement.  This additional study time translates into higher scores and lower standard deviation.  Teacher reviews also increased as the students had "more fun learning."
+
 ## Customer-driven menu analysis (2020)
 
 Nemeschansky, B., von der Heidt, T., & Kim, P. B. (2020). Customer-driven menu analysis (CDMA): Capturing customer voice in menu management. International Journal of Hospitality Management, 91. doi:10.1016/j.ijhm.2019.102417.  [CustomerDrivenMenu.pdf](CustomerDrivenMenu.pdf).
+
+Resturants owners use `Menu Analysis` to determine which products and most effective and how to engage their customers.  MA typically focuses on _internal costs and ignores externally defined value_.  This makes it challenging to consider the customer's persception and drive higher sale-volumes.
+
+*What artifacts did they build?*
+
+The researchers define a `Customer-Driven Menu Analysis Model`, where _the customer defines preferences linking the internal cost structure of the resturant to externally defined (customer) values.  They provide a coherent and comprehensive understanding of current MA methods._
+
+Their approach is also unique because other solutions focus on individual product profitability.  Instead, they focus on customer profitability (e.g., repeat visits and cross-selling).
+
+These distinctions are reflected through a value creation model, that spans five cost types:
+
+1. customer value-added (CVA);
+2. business valueadded current (BVA-C);
+3. business value-added future (BVA-F);
+4. business value-added administrative (BVA-A);
+5. and non-value-added (NVA)
+
+![cdma.png](cdma.png)
+
+*How did they measure the results?*
+
+The authors had access to a 90-seat bistro in downtown Auckland, New Zealand.  The resturant averaged $75,000 weekly revenue and then measured the influence of changes to the menu.
+
+Customers (~400) would also complete surveys in Likert scale to assess what is important to them.  These recommendations drove changes in menu designs to change the emphasis on different aspects (e.g., online ordering versus in-person service).
+
+![cmda-results.png](cmda-results.png)
 
 ## Implementing self-service business analytics supporting lean manufacturing (2018)
 
