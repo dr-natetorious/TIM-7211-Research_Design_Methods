@@ -85,3 +85,20 @@ Customers (~400) would also complete surveys in Likert scale to assess what is i
 ## Implementing self-service business analytics supporting lean manufacturing (2018)
 
 Lizotte-Latendresse, S., & Beauregard, Y. (2018). Implementing self-service business analytics supporting lean manufacturing: A state-of-the-art review. IFAC PapersOnLine, 51(11), 1143–1148. doi:10.1016/j.ifacol.2018.08.436.  [BusinessAnalytics.pdf](BusinessAnalytics.pdf).
+
+A fundamental principle in Lean design is that we need to measure if we are to improve.  There is also an industry shift toward `self-service analytics`.  
+
+Businesses believe that this flexibility will produce more value, however there is limited research into this assumption.  There is signicant risk that these tools are too complex and produce a `garbage-in/garbage-out scenario`.
+
+*What artifacts did they produce?*
+
+The researcher produce an interative process, that directs self-service engineers toward in the right direction.
+
+>Key SSBA architecture findings can be summarized:
+
+- Hierarchical drill-down capability can facilitate PSI problem investigations, SOP, and helps scalability;
+- An alert feature can be integrated in order to notify stakeholders that a problem is to be addressed, especially in cases where timely action is needed;
+- Simulation can improve the decision-making process. Predictive analytics leveraging statistics or machine learning can ultimately help modulate KPI outcomes;
+- Tracked KPIs must be chosen carefully, as people will attempt to improve those if they are compensated to do so, even if the outcome is unproductive.
+
+![workflow.png](workflow.png)
