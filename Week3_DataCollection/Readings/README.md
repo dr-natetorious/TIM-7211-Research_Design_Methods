@@ -1,12 +1,10 @@
-# Readings
+# Readings for the week
 
-## Research design (2014)
+## Assignment Specific Materials
 
-Creswell, J. W. (2014). Research design: Qualitative, quantitative, and mixed methods approaches (4th ed.). Thousand Oaks, CA: Sage Publishing, Inc. [RedShelf](https://platform.virdocs.com/r/s/0/doc/423967/sp/17983313/mi/59936863?menu=index). [CH8](creswell_ch8.pdf) | [CH9](creswell_ch9.pdf).
+This week's [assignment](../Assignment.md) requires writing a bibliogrpahy and describing data collection methods.
 
-## Framework of problem-based research (2008)
-
-Ellis, T. J., & Levy, Y. (2008). Framework of problem-based research: A guide for novice researchers on the development of a research-worthy problem. Informing Science: The International Journal of an Emerging Transdiscipline, 11, 17-33. [DOI](https://doi-org.proxy1.ncu.edu/10.28945/438). [framework_problem_research.pdf](framework_problem_research.pdf).
+Initial plans started with [Technology](technology) as the primary topic, but transitioned toward [COVID-19](covid-19), due to the ease of connecting a running theme between the topics.
 
 ## How to Create a Bad Survey Instrument (2017)
 
