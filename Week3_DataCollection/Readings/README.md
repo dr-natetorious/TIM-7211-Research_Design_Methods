@@ -12,6 +12,8 @@ Ellis, T. J., & Levy, Y. (2008). Framework of problem-based research: A guide fo
 
 Sullivan, G. M., & Artino, A. R. (2017). How to Create a Bad Survey Instrument. Journal of Graduate Medical Education, 9(4), 411–415. [DOI](https://dx-doi-org.proxy1.ncu.edu/10.4300%2FJGME-D-17-00375.1).  [BadSurvey.pdf](BadSurvey.pdf).
 
+![badquestions.png](badquestions.png)
+
 ## Development and validation of the educational technologist multimedia competency survey (2014)
 
 Ritzhaupt, A. D., & Martin, F. (2014). Development and validation of the educational technologist multimedia competency survey. Educational Technology Research Development, 62, 13-33. [DOI](https://doi-org.proxy1.ncu.edu/10.1007/s11423-013-9325-2). [develop_survey.pdf](develop_survey.pdf).
